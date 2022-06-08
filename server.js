@@ -16,6 +16,7 @@ if (process.NODE_ENV !== "production") {
 }
 
 /* Use Routes */
+app.use("/api/course", require("./routes/courses"));
 
 const port = process.env.PORT || 5000;
 

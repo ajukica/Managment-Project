@@ -23,11 +23,33 @@ router.post("/create", (req,res) => {
     
 });
 
+/**
+ * @route Type("get")
+ * Get all courses
+ */
 router.get("/",(req,res)=>{
     let sql = `SELECT * FROM courses`;
 
     db.query(sql,(err,result)=>{
         return res.status(200).json(result);
+    });
+});
+
+/**
+ * @route Type("update")
+ * Update a course
+ */
+router.put("/update",(req,res)=>{
+    const id = req.body.id;
+    const naziv = req.body.Naziv;
+
+    db.query(`UPDATE courses SET Naziv = ? WHERE id = ?`,[naziv,id],
+        (err,result)=>{
+        if (err) {
+            return res.status(400).json({msg: "Neuspjesna izmjena"});
+        } else {
+            return res.status(400).json({msg: "Uspjesna izmjena"});;
+        }       
     });
 });
 

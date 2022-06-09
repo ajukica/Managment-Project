@@ -48,9 +48,25 @@ router.put("/update",(req,res)=>{
         if (err) {
             return res.status(400).json({msg: "Neuspjesna izmjena"});
         } else {
-            return res.status(400).json({msg: "Uspjesna izmjena"});;
+            return res.status(200).json({msg: "Uspjesna izmjena"});;
         }       
     });
 });
+
+/**
+ * @route Type("delete")
+ * Delete a course
+ */
+router.delete("/delete",(req,res)=>{
+    const id = req.body.id;
+    db.query(`DELETE FROM courses WHERE id = ?`,[id],
+        (err,result)=>{
+        if (err) {
+            return res.status(400).json({msg: "Neuspjesno brisanje"});
+        } else {
+            return res.status(200).json({msg: "Uspjesno brisanje"});;
+        }       
+    });
+})
 
 module.exports = router;

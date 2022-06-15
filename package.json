@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node server",
-    "server":"nodemon server",
+    "server": "nodemon server",
     "client": "npm start --prefix client",
     "scss": "node-sass --watch scss/ -o client/src",
     "dev": "concurrently \"npm run server\" \"npm run client\" \"npm run scss\""
@@ -18,6 +18,7 @@
     "express": "^4.17.1",
     "mysql": "^2.18.1",
     "node-sass": "^6.0.1",
+    "react-redux": "^8.0.2",
     "uuid": "^8.3.2"
   },
   "devDependencies": {

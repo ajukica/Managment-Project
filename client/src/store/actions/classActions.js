@@ -1,7 +1,7 @@
 import React from 'react'
 import {returnError} from './errorActions' 
 import axios from 'axios'
-import {CLEAR_ERROR,ADD_CLASS,CLASS_FAIL,CLASS_CREATED,DELETE_CLASS} from "./types"
+import {CLEAR_ERROR,ADD_CLASS,CLASS_FAIL,CLASS_CREATED,DELETE_CLASS,UPDATE_CLASS} from "./types"
 
 /*Create Class*/
 export const createClass = ({name}) => async (dispatch) =>{
@@ -29,19 +29,19 @@ export const createClass = ({name}) => async (dispatch) =>{
 };
 
 /*Read Classes*/
-export const getClasses = () => (dispatch) => {
+export const getClasses = () => async (dispatch) => {
     axios.get("/api/class")
     .then ((res)=>{
         dispatch({type: CLEAR_ERROR});
         dispatch({type:ADD_CLASS,payload: res.data})
     })
-    .catch((err) => {
+    .catch((error) => {
         dispatch(returnError(error.response.data.msg,error.response.status));
     })
 }
 
 /* Update Class */
-export const updateClass = ({Naziv}) => (dispatch) => {
+export const updateClass = ({Naziv}) => async (dispatch) => {
     const body = JSON.stringify({Naziv});
 
     const config ={
@@ -61,7 +61,7 @@ export const updateClass = ({Naziv}) => (dispatch) => {
 
 /*Delete a Class */
 
-export const deleteClass = ({id}) => (dispatch) => {
+export const deleteClass = ({id}) =>  async (dispatch) => {
     
     const config ={
         headers: {

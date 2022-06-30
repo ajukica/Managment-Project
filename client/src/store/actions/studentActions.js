@@ -1,7 +1,7 @@
 import React from 'react'
 import {returnError} from './errorActions' 
 import axios from 'axios'
-import {CLEAR_ERROR,ADD_STUDENT,STUDENT_CREATED,} from "./types"
+import {CLEAR_ERROR,ADD_STUDENT,STUDENT_CREATED,STUDENT_FAIL,UPDATE_STUDENT,DELETE_STUDENT} from "./types"
 
 /*Create Student*/
 export const createStudent = ({Ime,Prezime,Email,Courses,ClassName}) => async (dispatch) =>{
@@ -29,19 +29,19 @@ export const createStudent = ({Ime,Prezime,Email,Courses,ClassName}) => async (d
 };
 
 /*Read Classes*/
-export const getStudent = () => (dispatch) => {
+export const getStudent = () => async (dispatch) => {
     axios.get("/api/student")
     .then ((res)=>{
         dispatch({type: CLEAR_ERROR});
         dispatch({type:ADD_STUDENT,payload: res.data})
     })
-    .catch((err) => {
+    .catch((error) => {
         dispatch(returnError(error.response.data.msg,error.response.status));
     })
 }
 
 /* Update Class */
-export const updateStudent = ({Ime,Prezime,Email,Courses,ClassName}) => (dispatch) => {
+export const updateStudent = ({Ime,Prezime,Email,Courses,ClassName}) => async (dispatch) => {
     const body = JSON.stringify({Ime,Prezime,Email,Courses,ClassName});
 
     const config ={
@@ -61,7 +61,7 @@ export const updateStudent = ({Ime,Prezime,Email,Courses,ClassName}) => (dispatc
 
 /*Delete a Class */
 
-export const deleteStudent = ({id}) => (dispatch) => {
+export const deleteStudent = ({id}) => async (dispatch) => {
     
     const config ={
         headers: {

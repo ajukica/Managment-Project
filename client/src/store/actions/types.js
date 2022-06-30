@@ -12,11 +12,15 @@ export const ADD_CLASS = "ADD_CLASS";
 export const DELETE_CLASS ="DELETE_CLASS";
 export const CLASS_FAIL = "CLASS_FAIL";
 export const UPDATE_CLASS = "UPDATE_CLASS";
+export const CLASS_CREATED = "CLASS_CREATED";
 
 /*Student Types */
 export const GET_STUDENT = "GET_STUDENT";
 export const ADD_STUDENT = "ADD_STUDENT";
 export const DELETE_STUDENT = "DELETE_STUDENT"
+export const UPDATE_STUDENT = "UPDATE_STUDENT";
+export const STUDENT_CREATED = "STUDENT_CREATED";
+export const STUDENT_FAIL = "STUDENT_FAIL";
 
 
 

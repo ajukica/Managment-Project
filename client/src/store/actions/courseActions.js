@@ -4,7 +4,7 @@ import axios from 'axios'
 import {CLEAR_ERROR,ADD_COURSES,COURSE_FAIL,COURSE_CREATED,DELETE_COURSES} from "./types"
 
 /*Create Course*/
-export const createCoure = ({name}) => async (dispatch) =>{
+export const createCourse = ({name}) => async (dispatch) =>{
     
     const config ={
         headers: {
@@ -71,7 +71,7 @@ export const deleteCourse = ({id}) => (dispatch) => {
     };
 
     await axios.delete("/api/course/delete",{
-        data: {course_id: id},
+        data: {id: id},
     },
     config
     ).then(()=> dispatch({type:DELETE_COURSES}))
